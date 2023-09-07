@@ -16,32 +16,36 @@ fn quad(a: i64, b: i64, c: i64) -> (f64, f64) {
 
 fn main() {
     let v = args().collect::<Vec<_>>();
-    if let Some(a) = v.get(1) {
-        if let Some(b) = v.get(2) {
-            if let Some(c) = v.get(3) {
-                let a = a.parse::<i64>().unwrap_or_else(|_| {
-                    eprintln!("Not a number");
-                    exit(1)
-                });
-                let b = b.parse::<i64>().unwrap_or_else(|_| {
-                    eprintln!("Not a number");
-                    exit(1)
-                });
-                let c = c.parse::<i64>().unwrap_or_else(|_| {
-                    eprintln!("Not a number");
-                    exit(1)
-                });
-                println!("{:?}", quad(a, b, c));
-            } else {
-                eprintln!("Usage: quad a b c where\na is the first coefficient in the equation you're trying to solve,\nb is the second coefficient in the equation you're trying to solve,\nand c is the third coefficient in the equation you're trying to solve");
-                exit(1);
-            }
-        } else {
-            eprintln!("Usage: quad a b c where\na is the first coefficient in the equation you're trying to solve,\nb is the second coefficient in the equation you're trying to solve,\nand c is the third coefficient in the equation you're trying to solve");
-            exit(1);
-        }
-    } else {
+
+    let raw_a = v.get(1).unwrap_or_else(|| {
         eprintln!("Usage: quad a b c where\na is the first coefficient in the equation you're trying to solve,\nb is the second coefficient in the equation you're trying to solve,\nand c is the third coefficient in the equation you're trying to solve");
-        exit(1);
-    }
+        exit(1)
+    });
+
+    let raw_b = v.get(2).unwrap_or_else(|| {
+        eprintln!("Usage: quad a b c where\na is the first coefficient in the equation you're trying to solve,\nb is the second coefficient in the equation you're trying to solve,\nand c is the third coefficient in the equation you're trying to solve");
+        exit(1)
+    });
+
+    let raw_c = v.get(3).unwrap_or_else(|| {
+        eprintln!("Usage: quad a b c where\na is the first coefficient in the equation you're trying to solve,\nb is the second coefficient in the equation you're trying to solve,\nand c is the third coefficient in the equation you're trying to solve");
+        exit(1)
+    });
+
+    let a = raw_a.parse::<i64>().unwrap_or_else(|_| {
+        eprintln!("Not a number");
+        exit(1)
+    });
+
+    let b = raw_b.parse::<i64>().unwrap_or_else(|_| {
+        eprintln!("Not a number");
+        exit(1)
+    });
+
+    let c = raw_c.parse::<i64>().unwrap_or_else(|_| {
+        eprintln!("Not a number");
+        exit(1)
+    });
+
+    println!("{:?}", quad(a, b, c));
 }
