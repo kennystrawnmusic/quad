@@ -2,10 +2,10 @@ use std::env::args;
 use std::process::exit;
 
 fn quadf(a: f64, b: f64, c: f64) -> (f64, f64) {
-    let discrim = b.powi(2) - 4.0 * a * c;
+    let discrim = b.powi(2) - (4.0 * a * c);
 
-    let pos = (-b + discrim.sqrt()) / 2.0 * a;
-    let neg = (-b - discrim.sqrt()) / 2.0 * a;
+    let pos = (-b + discrim.sqrt()) / (2.0 * a);
+    let neg = (-b - discrim.sqrt()) / (2.0 * a);
 
     (pos, neg)
 }
@@ -15,7 +15,7 @@ fn _quadi(a: i64, b: i64, c: i64) -> (f64, f64) {
     let b = b as f64;
     let c = c as f64;
 
-    let discrim = b.powi(2) - 4.0 * a * c;
+    let discrim = b.powi(2) - (4.0 * a * c);
 
     let pos = (-b + discrim.sqrt()) / 2.0 * a;
     let neg = (-b - discrim.sqrt()) / 2.0 * a;
